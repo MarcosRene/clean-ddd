@@ -3,21 +3,21 @@ import { QuestionsRepository } from '@/domain/forum/application/repositories/que
 import { Question } from '@/domain/forum/enterprise/entities/question'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
-interface GetQuestionBySlugRequest {
+interface GetQuestionBySlugUseCaseRequest {
   slug: string
 }
 
-type GetQuestionBySlugResponse = Either<
+type GetQuestionBySlugUseCaseResponse = Either<
   ResourceNotFoundError,
   { question: Question }
 >
 
-export class GetQuestionBySlug {
+export class GetQuestionBySlugUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
 
   async execute({
     slug,
-  }: GetQuestionBySlugRequest): Promise<GetQuestionBySlugResponse> {
+  }: GetQuestionBySlugUseCaseRequest): Promise<GetQuestionBySlugUseCaseResponse> {
     const question = await this.questionsRepository.findBySlug(slug)
 
     if (!question) {
