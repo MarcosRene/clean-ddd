@@ -13,15 +13,13 @@ export class Entity<T> {
     this._id = id ?? new UniqueEntityID(id)
   }
 
-  equals(entity: Entity<any>) {
+  public equals(entity: Entity<any>) { //eslint-disable-line
     if (entity === this) {
       return true
     }
-
-    if (entity.id === this.id) {
+    if (entity.id === this._id) {
       return true
     }
-
     return false
   }
 }
